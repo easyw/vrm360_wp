@@ -5,7 +5,7 @@ Tags: 360 deg viewer, 3d viewer, 3D model viewer, 3d model display, 360 product 
 Requires at least: 4.0.1
 Tested up to: 5.3
 Requires PHP: 5.3
-Stable tag: 1.2.1
+Stable tag: 1.3.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -132,6 +132,9 @@ Shortcode Parameters:
 
 == Upgrade Notice ==
 
+= 1.3.0 =
+* Only load scripts and styles when shortcode is present
+
 = 1.2.1 =
 
 * directional and ambient light color & intensity
@@ -162,6 +165,9 @@ Shortcode Parameters:
 
 
 == Changelog ==
+
+= 1.3.0 =
+* Only load scripts and styles when shortcode is present
 
 = 1.2.1 =
 

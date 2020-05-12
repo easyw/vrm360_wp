@@ -45,29 +45,31 @@ function add_vrm360_links($links, $file) {
 }
 add_filter('plugin_row_meta', 'add_vrm360_links', 10, 2);
 
-// register vrm360 scripts and styles
+// Register vrm360 scripts and styles if post contains vrm360 shortcode
 function vrm360_enqueue_scripts() {
-    //wp_enqueue_script( 'spritespin.min.js', plugins_url('scripts/spritespin.min.js', __FILE__), array('jquery') );
-    wp_enqueue_style( 'vrm360-style', plugins_url('vrm360.css', __FILE__) );
-    wp_enqueue_script( 'three.min.js', plugins_url('js/three.min.js', __FILE__), array('jquery') );
-    wp_enqueue_script( 'OrbitControls.js', plugins_url('js/OrbitControls.js', __FILE__), array('jquery') );
-    wp_enqueue_script( 'WebGL.js', plugins_url('js/WebGL.js', __FILE__), array('jquery') );
-    wp_enqueue_script( 'VRMLLoader.js', plugins_url('js/VRMLLoader.js', __FILE__), array('jquery') );
-    wp_enqueue_script( 'DDSLoader.js', plugins_url('js/DDSLoader.js', __FILE__), array('jquery') );
-    wp_enqueue_script( 'MTLLoader.js', plugins_url('js/MTLLoader.js', __FILE__), array('jquery') );
-    wp_enqueue_script( 'OBJLoader.js', plugins_url('js/OBJLoader.js', __FILE__), array('jquery') );
-    wp_enqueue_script( 'FBXLoader.js', plugins_url('js/FBXLoader.js', __FILE__), array('jquery') );
-    wp_enqueue_script( 'inflate.min.js', plugins_url('js/inflate.min.js', __FILE__), array('jquery') );
-    wp_enqueue_script( 'ColladaLoader.js', plugins_url('js/ColladaLoader.js', __FILE__), array('jquery') );
-    wp_enqueue_script( 'STLLoader.js', plugins_url('js/STLLoader.js', __FILE__), array('jquery') );
-    wp_enqueue_script( 'THREEx.FullScreen.js', plugins_url('js/THREEx.FullScreen.js', __FILE__), array('jquery') );
-    wp_enqueue_script( 'inserter.js', plugins_url('js/inserter.js', __FILE__), array('jquery') );
-    
-    check_vrmfont_awesome();
+    global $post;
+    if ( is_a( $post, 'WP_Post') && has_shortcode( $post->post_content, 'vrm360') ) {
+        //wp_enqueue_script( 'spritespin.min.js', plugins_url('scripts/spritespin.min.js', __FILE__), array('jquery') );
+        wp_enqueue_style ( 'vrm360-style', plugins_url('css/vrm360.css', __FILE__) );
+        wp_enqueue_script( 'three.min.js', plugins_url('js/three.min.js', __FILE__), array('jquery') );
+        wp_enqueue_script( 'OrbitControls.js', plugins_url('js/OrbitControls.js', __FILE__), array('jquery') );
+        wp_enqueue_script( 'WebGL.js', plugins_url('js/WebGL.js', __FILE__), array('jquery') );
+        wp_enqueue_script( 'VRMLLoader.js', plugins_url('js/VRMLLoader.js', __FILE__), array('jquery') );
+        wp_enqueue_script( 'DDSLoader.js', plugins_url('js/DDSLoader.js', __FILE__), array('jquery') );
+        wp_enqueue_script( 'MTLLoader.js', plugins_url('js/MTLLoader.js', __FILE__), array('jquery') );
+        wp_enqueue_script( 'OBJLoader.js', plugins_url('js/OBJLoader.js', __FILE__), array('jquery') );
+        wp_enqueue_script( 'FBXLoader.js', plugins_url('js/FBXLoader.js', __FILE__), array('jquery') );
+        wp_enqueue_script( 'inflate.min.js', plugins_url('js/inflate.min.js', __FILE__), array('jquery') );
+        wp_enqueue_script( 'ColladaLoader.js', plugins_url('js/ColladaLoader.js', __FILE__), array('jquery') );
+        wp_enqueue_script( 'STLLoader.js', plugins_url('js/STLLoader.js', __FILE__), array('jquery') );
+        wp_enqueue_script( 'THREEx.FullScreen.js', plugins_url('js/THREEx.FullScreen.js', __FILE__), array('jquery') );
+        wp_enqueue_script( 'inserter.js', plugins_url('js/inserter.js', __FILE__), array('jquery') );
+        
+        check_vrmfont_awesome();
     }
+}
 
 add_action( 'wp_enqueue_scripts', 'vrm360_enqueue_scripts' );
-
 //in wordpress admin area
 // if (is_admin())
 //     {
